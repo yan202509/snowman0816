@@ -1,4 +1,4 @@
-# Snowbug
+# Snowman
 
 ## Goal
 
