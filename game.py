@@ -2,13 +2,15 @@ SNOWMAN_MIN_WORD_LENGTH = 5
 SNOWMAN_MAX_WORD_LENGTH = 8
 SNOWMAN_MAX_WRONG_GUESSES = 7
 
-SNOWMAN_1 = '*   *   *  '
-SNOWMAN_2 = ' *   _ *   '
-SNOWMAN_3 = '   _[_]_ * '
-SNOWMAN_4 = '  * (")    '
-SNOWMAN_5 = '  \\( : )/ *'
-SNOWMAN_6 = '* (_ : _)  '
-SNOWMAN_7 = '-----------'
+SNOWMAN_GRAPHIC = [
+    '*   *   *  ',
+    ' *   _ *   ',
+    '   _[_]_ * ',
+    '  * (")    ',
+    '  \\( : )/ *',
+    '* (_ : _)  ',
+    '-----------'
+]
 
 def snowman(snowman_word):
     """Complete the snowman function
@@ -19,26 +21,13 @@ def snowman(snowman_word):
     """
     pass
 
-def print_snowman_graphic(num_wrong_guesses):
+def print_snowman_graphic(wrong_guesses_count):
     """This function prints out the appropriate snowman image 
     depending on the number of wrong guesses the player has made.
     """
     
-    for i in range(1, num_wrong_guesses + 1):
-        if(i == 1):
-            print(SNOWMAN_1)
-        if(i == 2):
-            print(SNOWMAN_2)
-        if(i == 3):
-            print(SNOWMAN_3)
-        if(i == 4):
-            print(SNOWMAN_4)
-        if(i == 5):
-            print(SNOWMAN_5)
-        if(i == 6):
-            print(SNOWMAN_6)
-        if(i == 7):
-            print(SNOWMAN_7)
+    for i in range(SNOWMAN_MAX_WRONG_GUESSES - wrong_guesses_count, SNOWMAN_MAX_WRONG_GUESSES):
+        print(SNOWMAN_GRAPHIC[i])
 
 def get_letter_from_user(snowman_word_dict, wrong_guesses_list):
     """This function takes the snowman_word_dict and the list of characters 
@@ -89,7 +78,7 @@ def print_word_progress_string(snowman_word, snowman_word_dict):
         output_string += " "
     print(output_string)
 
-def get_word_progress(snowman_word, snowman_word_dict):
+def is_word_guessed(snowman_word, snowman_word_dict):
     """
     This function takes the snowman_word and snowman_word_dict as input.
     It returns True if all the letters of the word have been guessed, and False otherwise.
