@@ -58,6 +58,7 @@ def build_word_dict(snowman_word):
     a dictionary with a key-value pair for each letter in 
     snowman_word where the key is the letter and the value is `False`.
     """
+
     snowman_word_dict = {}
     for letter in snowman_word:
         snowman_word_dict[letter] = False
@@ -66,9 +67,21 @@ def build_word_dict(snowman_word):
 def print_word_progress_string(snowman_word, snowman_word_dict):
     """
     This function takes the snowman_word and snowman_word_dict as input.
-    It prints an output_string that shows the correct letter guess placements 
-    as well as the placements for the letters yet to be guessed.
+    It calls another function to generate a string representation of the  
+    user's progress towards guessing snowman_word and prints this string.
     """
+
+    word_progress_string = generate_word_progress_string(snowman_word, snowman_word_dict)
+    print(word_progress_string)
+
+def generate_word_progress_string(snowman_word, snowman_word_dict):
+    """
+    This function takes the snowman_word and snowman_word_dict as input.
+    It creates and returns an output string that shows the correct letter 
+    guess placements as well as the placements for the letters yet to be 
+    guessed.
+    """
+
     output_string = ""
     for letter in snowman_word:
         if snowman_word_dict[letter]:
@@ -76,13 +89,14 @@ def print_word_progress_string(snowman_word, snowman_word_dict):
         else:
             output_string += "_"
         output_string += " "
-    print(output_string)
+    return output_string
 
 def is_word_guessed(snowman_word, snowman_word_dict):
     """
     This function takes the snowman_word and snowman_word_dict as input.
     It returns True if all the letters of the word have been guessed, and False otherwise.
     """
+
     for letter in snowman_word:
         if not snowman_word_dict[letter]:
             return False
