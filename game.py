@@ -53,7 +53,7 @@ def get_letter_from_user(snowman_word_dict, wrong_guesses_list):
 
     return user_input_string
     
-def build_word_dict(snowman_word):
+def build_letter_status_dict(snowman_word):
     """This function takes snowman_word as input and returns 
     a dictionary with a key-value pair for each letter in 
     snowman_word where the key is the letter and the value is `False`.
