@@ -67,7 +67,7 @@ def build_letter_status_dict(snowman_word):
 
     letter_status_dict = {}
     for letter in snowman_word:
-         letter_status_dict[letter] = False
+        letter_status_dict[letter] = False
     return  letter_status_dict
     
 
