@@ -20,7 +20,48 @@ def snowman(snowman_word):
     If the player wins and, 
     'Sorry, you lose! The word was {snowman_word}' if the player loses
     """
-    pass
+
+
+    # the correct list is from the helper function build_letter_status_dict
+    # the parameter of snowman_word is from a random generation, which is the word we working on
+    # this is correct because the user input a letter that match with any letter in the word
+    # the word is snowman_word
+    correct_letter_guess_statuses = build_letter_status_dict(snowman_word)
+    wrong_guesses_list = []
+
+    while len(wrong_guesses_list) < SNOWMAN_MAX_WRONG_GUESSES:
+        user_input = get_letter_from_user(correct_letter_guess_statuses, wrong_guesses_list)
+        # Use the new variable snowman_word instead of the constant variable SNOWMAN_WORD here:
+        # this is hint 4 in 'Using the Letter Status Dictionary'
+        if user_input in correct_letter_guess_statuses:
+            print("You guessed a letter that's in the word!")
+            correct_letter_guess_statuses[user_input] = True
+        else:
+            print(f"The letter {user_input} is not in the word")
+            wrong_guesses_list.append(user_input)
+
+        # this print_snowman is from the helper function below at line 123
+        print_snowman_graphic(len(wrong_guesses_list))
+        print(f"Wrong guesses:{wrong_guesses_list}")
+
+        # call the helper function, means to actually use it here in the main function
+        # if we do not use it here, the function is not being used at all
+        # print the string either correct or not 
+
+        # just displaying the _ _ _ or the letter that's correct
+        print_word_progress_string(snowman_word, correct_letter_guess_statuses)
+
+        # if every letter is guessed, means completed the game of guessing
+        # the else function is outside of if, because when chances are not used up
+        # the game will continue to loop over this while function
+        if is_word_guessed(snowman_word, correct_letter_guess_statuses):
+            print("Congratulations, you win!")
+            return
+        
+    # or when use up the chances, the game ends
+    else:
+        # print("Sorry, you lose! The word was {snowman_word}")
+        print(f"Sorry, you lose! The word was {snowman_word}")
 
 
 def print_snowman_graphic(wrong_guesses_count):
